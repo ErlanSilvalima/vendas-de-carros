@@ -1,0 +1,329 @@
+/* --- Variáveis de Temas (O segredo do Dark Mode) --- */
+
+/* Cores aplicadas quando o BODY tem a classe .light-mode */
+.light-mode {
+    --bg-page: #f8fafc;         /* Fundo cinza bem claro */
+    --bg-card: #ffffff;         /* Fundo dos cartões branco */
+    --bg-navbar: #ffffff;       /* Menu superior branco */
+    --text-main: #0f172a;       /* Texto quase preto */
+    --text-muted: #475569;      /* Texto cinza intermediário */
+    --border-color: #e2e8f0;    /* Bordas sutis claras */
+    --primary: #dc2626;         /* Vermelho esportivo destaque */
+    --primary-hover: #b91c1c;   /* Vermelho escuro para hover */
+    --toggle-btn-bg: #e2e8f0;   /* Fundo do botão de tema */
+    --shadow: rgba(0, 0, 0, 0.06);
+}
+
+/* Cores aplicadas quando o BODY tem a classe .dark-mode */
+.dark-mode {
+    --bg-page: #09090b;         /* Fundo quase preto */
+    --bg-card: #18181b;         /* Fundo dos cartões grafite escuro */
+    --bg-navbar: #18181b;       /* Menu superior escuro */
+    --text-main: #f4f4f5;       /* Texto quase branco */
+    --text-muted: #a1a1aa;      /* Texto cinza claro */
+    --border-color: #27272a;    /* Bordas escuras */
+    --primary: #ef4444;         /* Vermelho vivo neon para contraste no escuro */
+    --primary-hover: #f87171;   /* Vermelho mais claro para hover */
+    --toggle-btn-bg: #27272a;   /* Fundo do botão de tema escuro */
+    --shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* --- Resets e Estilos Base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    line-height: 1.5;
+    /* Transição suave de 0.4 segundos ao mudar qualquer cor */
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- Menu Superior (Navbar) --- */
+.navbar {
+    background-color: var(--bg-navbar);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 16px 0;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-decoration: none;
+    color: var(--text-main);
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-menu a:hover {
+    color: var(--primary);
+}
+
+/* --- Botão Dark/Light Mode Interativo --- */
+.btn-toggle {
+    background-color: var(--toggle-btn-bg);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.btn-toggle:hover {
+    transform: scale(1.05);
+}
+
+/* Exibição condicional dos ícones/textos dentro do botão */
+.light-mode .icon-sun,
+.dark-mode .icon-moon {
+    display: block;
+}
+
+.light-mode .icon-moon,
+.dark-mode .icon-sun {
+    display: none;
+}
+
+/* --- Seção de Apresentação (Hero) --- */
+.hero {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border-color);
+    background: linear-gradient(180deg, var(--bg-navbar) 0%, var(--bg-page) 100%);
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .hero-container {
+        grid-template-columns: 1fr 1fr; /* Coloca imagem e texto lado a lado no PC */
+    }
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+}
+
+.hero-content h1 span {
+    color: var(--primary);
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 16px;
+}
+
+/* Botões Gerais */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.1s;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 2px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--border-color);
+}
+
+/* Imagem flutuante do Carro */
+.hero-image-box {
+    display: flex;
+    justify-content: center;
+}
+
+.hero-car {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px var(--shadow);
+    transition: transform 0.3s;
+}
+
+.hero-car:hover {
+    transform: scale(1.02);
+}
+
+/* --- Vitrine / Catálogo de Carros --- */
+.catalog {
+    padding: 80px 24px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.section-header p {
+    color: var(--text-muted);
+}
+
+/* Grid layout responsivo para os cartões de carros */
+.grid-cars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+}
+
+/* Card Individual de Carro */
+.car-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px var(--shadow);
+    transition: all 0.4s ease;
+}
+
+.car-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 15px -3px var(--shadow);
+    border-color: var(--primary);
+}
+
+.car-img-wrapper img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.car-info {
+    padding: 24px;
+}
+
+.car-info h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.car-specs {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.car-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 16px;
+}
+
+.price {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.btn-buy {
+    text-decoration: none;
+    background-color: var(--text-main);
+    color: var(--bg-page);
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.car-card:hover .btn-buy {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+/* --- Rodapé (Footer) --- */
+.footer {
+    text-align: center;
+    padding: 40px 24px;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-navbar);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
